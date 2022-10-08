@@ -1,0 +1,82 @@
+-------------DATE OF CREATION:-------------
+ 2019-06-11 16:18:22.771859
+
+-------------COMMON CONFIGURATIONS:-------------
+
+path : /home/isarlab/Documenti/Ebrake/e-brake/Data/Dataset
+betaspace : 35
+npointslip : 1000
+startslip : 0.0
+stopslip : 1.0
+subsampling : None
+windows : 50
+focusmin : None
+focusmax : None
+noise : 0.005
+ncurvvalid : 5
+ncurvhid : 5
+
+-------------CUSTOM CONFIGURATIONS:--------------
+
+BETAS(Min,Max)
+b1:(0.19, 2)
+b2:(94.93, 6.0)
+b3:(0.06, 0.7)
+Generation of Beta Method->
+
+         burchkardt_three_sets_linspace:
+         starting from 3 tuples corresponding to the values (min, max) assumed by b1, b2, b3
+         and from the number of desired points, will be generated three vectors containing the values
+         included between the minimum and the maximum of beta. These 3 vectors are partitioned
+         in other 3 sets of beta for the generation of 3 different scenarios: 'used,validation,hidden'.
+
+           
+
+
+               burchkardt_three_sets_linspace_latin_hyper:
+               starting from 3 tuples corresponding to the values (min,  max) assumed by b1, b2, b3
+               and from the number of points desired,
+
+                 
+
+
+--------------ROAD SCENARIOS-------------
+
+--> USED:
+
+	 N° scenarios:1
+		 Coeff. Model: Burckhardt
+		   Annotation: BUR_DIAG_USED
+		     # Curves: 25
+--> VALIDATION:
+
+	 N° scenarios:1
+		 Coeff. Model: Burckhardt
+		   Annotation: BUR_DIAG_VALID
+		     # Curves: 5
+--> HIDDEN:
+
+	 N° scenarios:1
+		 Coeff. Model: Burckhardt
+		   Annotation: BUR_DIAG_HIDD
+		     # Curves: 5
+
+----CSV BUILD CONFIGURATIONS:----
+Builder type->
+
+        SlidingWindowBestSlip: Starting from a list of road models (curve families) iteratively for each model,
+        each curve is sampled through a sliding window of fixed size (size passed as function argument).
+        The elements present in the window at each step are shuffled.
+        Each step corresponds to one line of the csv, and the size of the window determines the number
+        of features: Len(win)+bestSlip(curve sampled at step n-th): from each the model, from each curve
+        is extracted the value of best slip and linked to the values in the window at step n.
+       
+Csv: c50e1006_used-->
+			Rows: 23775
+			Columns: 101
+Csv: c50e1006_val-->
+			Rows: 4755
+			Columns: 101
+Csv: c50e1006_hid-->
+			Rows: 4755
+			Columns: 101
